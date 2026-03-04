@@ -1,0 +1,159 @@
+{
+  "timestamp": "2026-03-02T16:48:48.032Z",
+  "score": 90.6,
+  "grade": "A+++",
+  "findings": [
+    {
+      "ruleId": "ARCH-001",
+      "filePath": "src/core/kv-memory.ts",
+      "severity": "major",
+      "title": "High afferent coupling",
+      "fingerprint": "99c3cb70aedf3316"
+    },
+    {
+      "ruleId": "QUAL-002",
+      "filePath": "src/adapters/claude-code.ts",
+      "severity": "minor",
+      "title": "Long function",
+      "fingerprint": "7f8be51e076038bb"
+    },
+    {
+      "ruleId": "QUAL-002",
+      "filePath": "src/adapters/generic.ts",
+      "severity": "minor",
+      "title": "Long function",
+      "fingerprint": "57f7c68411d6cb9d"
+    },
+    {
+      "ruleId": "QUAL-001",
+      "filePath": "src/cli/commands/analyze.ts",
+      "severity": "major",
+      "title": "High cyclomatic complexity",
+      "fingerprint": "3dd5a7f663b4f21c"
+    },
+    {
+      "ruleId": "QUAL-002",
+      "filePath": "src/cli/commands/analyze.ts",
+      "severity": "minor",
+      "title": "Long function",
+      "fingerprint": "de612033c8b31ead"
+    },
+    {
+      "ruleId": "QUAL-002",
+      "filePath": "src/cli/commands/config.ts",
+      "severity": "minor",
+      "title": "Long function",
+      "fingerprint": "678a03a5d9e2336e"
+    },
+    {
+      "ruleId": "QUAL-002",
+      "filePath": "src/cli/commands/graph.ts",
+      "severity": "minor",
+      "title": "Long function",
+      "fingerprint": "9ef180e65a26fad1"
+    },
+    {
+      "ruleId": "QUAL-001",
+      "filePath": "src/cli/commands/hooks.ts",
+      "severity": "major",
+      "title": "High cyclomatic complexity",
+      "fingerprint": "0613fe7c9e7b57fd"
+    },
+    {
+      "ruleId": "QUAL-003",
+      "filePath": "src/cli/commands/interactive.ts",
+      "severity": "minor",
+      "title": "Long file",
+      "fingerprint": "fd95433fbc9a5fd4"
+    },
+    {
+      "ruleId": "QUAL-008",
+      "filePath": "src/cli/commands/interactive.ts",
+      "severity": "minor",
+      "title": "Nested ternary",
+      "fingerprint": "ca15d55e6c327306"
+    },
+    {
+      "ruleId": "QUAL-008",
+      "filePath": "src/cli/commands/stats.ts",
+      "severity": "minor",
+      "title": "Nested ternary",
+      "fingerprint": "b993ba2881a6c5e9"
+    },
+    {
+      "ruleId": "QUAL-003",
+      "filePath": "src/cli/index.ts",
+      "severity": "minor",
+      "title": "Long file",
+      "fingerprint": "e0f967aabe36d277"
+    },
+    {
+      "ruleId": "QUAL-008",
+      "filePath": "src/core/analyzers/analysis-history.ts",
+      "severity": "minor",
+      "title": "Nested ternary",
+      "fingerprint": "429e7866913fcbbe"
+    },
+    {
+      "ruleId": "QUAL-001",
+      "filePath": "src/core/analyzers/architecture-analyzer.ts",
+      "severity": "major",
+      "title": "High cyclomatic complexity",
+      "fingerprint": "2df7a7f3d2e7957a"
+    },
+    {
+      "ruleId": "QUAL-008",
+      "filePath": "src/core/analyzers/architecture-analyzer.ts",
+      "severity": "major",
+      "title": "Deeply nested control flow",
+      "fingerprint": "6076771d1d566ec7"
+    },
+    {
+      "ruleId": "QUAL-008",
+      "filePath": "src/core/analyzers/cortexignore.ts",
+      "severity": "minor",
+      "title": "Nested ternary",
+      "fingerprint": "196f20c6292611e0"
+    },
+    {
+      "ruleId": "QUAL-003",
+      "filePath": "src/core/analyzers/quality-analyzer.ts",
+      "severity": "minor",
+      "title": "Long file",
+      "fingerprint": "cf7be39ed4665516"
+    },
+    {
+      "ruleId": "QUAL-001",
+      "filePath": "src/core/analyzers/testdocs-analyzer.ts",
+      "severity": "major",
+      "title": "High cyclomatic complexity",
+      "fingerprint": "3f9499d91f007c7a"
+    },
+    {
+      "ruleId": "QUAL-001",
+      "filePath": "src/core/analyzers/testdocs-analyzer.ts",
+      "severity": "major",
+      "title": "High cyclomatic complexity",
+      "fingerprint": "3f9499d91f007c7a"
+    },
+    {
+      "ruleId": "QUAL-003",
+      "filePath": "src/core/kv-memory.ts",
+      "severity": "minor",
+      "title": "Long file",
+      "fingerprint": "a58d5f992520d561"
+    },
+    {
+      "ruleId": "TOK-006",
+      "severity": "minor",
+      "title": "Duplicate type declarations",
+      "fingerprint": "6bedeb8ebef10822"
+    },
+    {
+      "ruleId": "DOC-007",
+      "severity": "minor",
+      "title": "Low error case testing",
+      "fingerprint": "1c8bf1a6706872b1"
+    }
+  ]
+}

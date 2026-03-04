@@ -1,0 +1,92 @@
+{
+  "name": "@sparn/cortex-developer-edition",
+  "version": "1.5.1",
+  "type": "module",
+  "description": "Full-featured context optimization & code analysis for AI coding agents — Developer Edition",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "cortex": "dist/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "scripts/postinstall.mjs",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "PRIVACY.md"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.mjs",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "bench": "vitest bench",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "mcp:server": "node dist/mcp/index.js",
+    "validate": "node scripts/validate-quickstart.mjs",
+    "precommit": "npm run lint && npm run test",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm run test && npm run build"
+  },
+  "keywords": [
+    "ai",
+    "context",
+    "optimization",
+    "context-window",
+    "token",
+    "token-reduction",
+    "pruning",
+    "cli",
+    "mcp"
+  ],
+  "author": "sparn-labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparn-labs/cortex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sparn-labs/cortex/issues"
+  },
+  "homepage": "https://github.com/sparn-labs/cortex#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.10.1",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "better-sqlite3": "^12.6.2",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "cosmiconfig": "^9.0.0",
+    "gpt-tokenizer": "^3.4.0",
+    "ink": "^5.2.1",
+    "ink-text-input": "^6.0.0",
+    "js-yaml": "^4.1.1",
+    "ora": "^9.3.0",
+    "react": "^18.3.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.3.0",
+    "@types/react": "^18.3.28",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

@@ -1,0 +1,62 @@
+# Source files (dist/ is shipped instead)
+src/
+tests/
+benchmarks/
+
+# Development configuration
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+biome.json
+
+# Development files
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+
+# Internal documentation (not for npm users)
+specs/
+.specify/
+*-SUMMARY.md
+PHASE*.md
+SECURITY-REVIEW.md
+PUBLISH-READY.md
+.gitignore-info.md
+GDPR-COMPLIANCE.md
+
+# Build artifacts
+*.tsbuildinfo
+coverage/
+
+# Development directories
+.vscode/
+.idea/
+node_modules/
+
+# Sparn local data (not for npm package)
+.sparn/
+
+# Git and CI
+.git/
+.github/
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tmp
+.temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Claude Code session files
+.claude/

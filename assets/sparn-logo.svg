@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" width="360" height="100">
+  <defs>
+    <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B9D"/>
+      <stop offset="100%" stop-color="#B8A9B4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Minimal brain from v3 - repositioned closer -->
+  <g transform="translate(10, 10)" fill="none" stroke="#FF6B9D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 40 8 C 26 8, 8 18, 8 36 C 8 50, 14 62, 24 67 C 28 69, 34 70, 40 70"/>
+    <path d="M 40 8 C 54 8, 72 18, 72 36 C 72 50, 66 62, 56 67 C 52 69, 46 70, 40 70"/>
+    <line x1="40" y1="12" x2="40" y2="67"/>
+    <path d="M 16 32 C 24 30, 30 35, 40 34"/>
+    <path d="M 19 50 C 26 47, 32 52, 40 50"/>
+    <path d="M 64 32 C 56 30, 50 35, 40 34"/>
+    <path d="M 61 50 C 54 47, 48 52, 40 50"/>
+  </g>
+
+  <text x="102" y="68" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="700" font-size="52" letter-spacing="5" fill="#1A1A2E">SPARN</text>
+</svg>

@@ -1,0 +1,13 @@
+Error: Cannot read property 'map' of undefined
+    at processData (src/data.ts:45:12)
+    at handleRequest (src/api.ts:120:8)
+    at Server.<anonymous> (src/server.ts:89:5)
+
+TypeError: x.toUpperCase is not a function
+    at formatName (src/utils.ts:23:15)
+    at getUserInfo (src/user.ts:67:19)
+
+ENOENT: no such file or directory, open 'config.json'
+
+ReferenceError: foo is not defined
+    at run (src/main.ts:100:3)
