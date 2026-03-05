@@ -9,6 +9,9 @@ build/
 # Sparn runtime data
 .sparn/
 
+# Cortex local config
+.cortex/
+
 # Logs
 *.log
 npm-debug.log*
