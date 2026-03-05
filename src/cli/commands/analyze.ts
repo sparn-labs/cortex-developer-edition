@@ -46,6 +46,7 @@ export interface AnalyzeCommandOptions {
   json?: boolean;
   output?: string;
   verbose?: boolean;
+  audit?: boolean;
   thresholds?: Partial<AnalyzeThresholds>;
   changed?: string | boolean;
   file?: string;
