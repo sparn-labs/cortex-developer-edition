@@ -2,25 +2,17 @@
 
 Full-featured context optimization & code analysis for AI coding agents. Keeps your Claude Code sessions lean so they last longer, cost less, and stay focused.
 
-> Looking for the simplified version? See [`@sparn/cortex`](https://repository.sparn.dev/-/web/detail/@sparn/cortex) — simple code scanning for everyone.
-
-## The Problem
-
-A typical Claude Code session generates 100K+ tokens in under an hour. File reads, test outputs, build logs — it all piles up. Eventually your context window is full of noise and Claude starts forgetting the decisions you made 20 minutes ago.
-
-Cortex sits between Claude and your project, quietly compressing verbose outputs, tracking what's still relevant, and making sure critical context (like that error you're debugging) never gets lost.
-
 ## Quick Start
 
 ```bash
-npm install -g @sparn/cortex
+npm install -g @sparn/cortex-developer-edition
 cd your-project
 cortex setup
 ```
 
-That's it. One command handles everything: detects Claude Code, creates the config, installs hooks, starts the background daemon, and generates your `CLAUDE.md`. You don't need to change anything about how you use Claude Code — cortex works through hooks that fire automatically.
+One command handles everything: detects Claude Code, creates the config, installs hooks, starts the background daemon, and generates your `CLAUDE.md`. You don't need to change anything about how you use Claude Code — cortex works through hooks that fire automatically.
 
-If you want more control, you can run each step yourself:
+If you want more control:
 
 ```bash
 cortex init              # Create .cortex/ config
@@ -29,11 +21,11 @@ cortex daemon start      # Start background optimizer
 cortex docs              # Generate CLAUDE.md
 ```
 
-## What It Actually Does
+## What It Does
 
 ### Hook-based compression
 
-Every time Claude runs a Bash command, reads a file, or greps your codebase, cortex checks the output size. If it's large (3000+ tokens), it generates a content-aware summary and attaches it as additional context. Claude still sees the full output, but also gets a compact version to reference later when the original scrolls out of view.
+Every time Claude runs a Bash command, reads a file, or greps your codebase, cortex checks the output size. If it's large (3000+ tokens), it generates a content-aware summary and attaches it as additional context.
 
 The compression is type-aware:
 - **Test results** — extracts pass/fail lines, skips the noise
@@ -47,39 +39,28 @@ Typical reduction: 60-90% on verbose outputs.
 
 ### Session awareness
 
-At the start of each prompt, cortex tells you what's going on:
+At the start of each prompt, cortex shows session health:
 
 ```
 [cortex] Session: 4.2MB | 3 outputs compressed | ~12K tokens saved
 ```
 
-When your session grows past 2MB, it nudges Claude to stay concise. Small thing, but it helps.
+When your session grows past 2MB, it nudges Claude to stay concise.
 
 ### Cross-session memory
 
-When you start a fresh Claude Code session in a project cortex knows about, it injects a briefing with:
-- Important context from past sessions (errors, architectural decisions, patterns)
-- Overdue technical debt items
-- Active implementation plans
-
-So Claude doesn't start from zero every time.
+When you start a fresh Claude Code session in a project cortex knows about, it injects a briefing with important context from past sessions (errors, architectural decisions, patterns), overdue tech debt items, and active implementation plans.
 
 ### Daemon
 
-The background daemon watches your session files and optimizes them when they get large. It also handles periodic consolidation (merging duplicate entries, cleaning up stale data). The daemon auto-starts when you open a Claude Code session — if it dies, the next prompt brings it back.
+The background daemon watches your session files and optimizes them when they get large. It auto-starts when you open a Claude Code session — if it dies, the next prompt brings it back.
 
 ```bash
 cortex daemon status    # Check if it's running
 cortex daemon stop      # Stop it
 ```
 
-### Auto-updating hooks
-
-When you upgrade cortex via npm, the postinstall script detects your existing hooks and updates their paths. No manual re-installation needed.
-
 ## Codebase Intelligence
-
-Beyond compression, cortex can analyze your project structure to help Claude navigate smarter.
 
 ### Dependency graph
 
@@ -105,7 +86,6 @@ Auto-generates a `CLAUDE.md` from your project structure, scripts, and dependenc
 
 ```bash
 cortex docs
-cortex docs --no-graph      # Skip dependency analysis
 cortex docs -o docs/CLAUDE.md
 ```
 
@@ -121,12 +101,11 @@ cortex verify <plan-id>
 
 ### Tech debt tracker
 
-Track technical debt with severity levels:
-
 ```bash
 cortex debt add "Fix N+1 queries" --severity P0 --due 2026-04-01 --files src/db.ts
 cortex debt list --overdue
 cortex debt resolve <id>
+cortex debt stats
 ```
 
 ### Codebase analyzer
@@ -135,7 +114,7 @@ Multi-dimensional scoring across architecture, quality, database, security, toke
 
 ```bash
 cortex analyze                    # Full analysis with score + grade
-cortex analyze --json             # Machine-readable output with fixable/fixType hints
+cortex analyze --json             # Machine-readable output
 cortex analyze --file src/api.ts  # Per-file health score
 cortex analyze --changed          # Only files changed since last commit
 cortex analyze --history          # Score trend over time
@@ -143,17 +122,30 @@ cortex analyze --save-baseline    # Save current results as baseline
 cortex analyze --diff             # Compare against saved baseline
 ```
 
-Supports `.cortexignore` for excluding files or suppressing specific rules:
+### Security audit
 
+11-layer OWASP security audit with 100-point weighted scoring, CVSS integration, and auto-fix suggestions:
+
+```bash
+cortex secure .                          # Full audit
+cortex secure . --fix                    # Auto-fix where possible
+cortex secure . --ci --min-grade B       # CI mode
+cortex secure . --compliance owasp       # Map to framework
 ```
-# .cortexignore
-src/generated/**
-src/legacy/** QUAL-001,QUAL-003
+
+### Compliance audit
+
+8-layer regulatory compliance check (GDPR, CCPA, HIPAA, SOC2):
+
+```bash
+cortex comply .                          # Full audit
+cortex comply . --framework gdpr         # Focus on GDPR
+cortex comply . --ci --min-grade B       # CI mode
 ```
 
 ## CLI
 
-Running `cortex` with no arguments shows project status. Help shows the essential commands by default:
+Running `cortex` with no arguments shows project status:
 
 ```bash
 cortex              # Project status
@@ -161,13 +153,13 @@ cortex --help       # Essential commands
 cortex --help --all # Everything
 ```
 
-Essential commands: `setup`, `status`, `optimize`, `stats`, `hooks`.
+**Essential commands**: `setup`, `status`, `optimize`, `stats`, `hooks`.
 
-Advanced commands (visible with `--all`): `analyze`, `graph`, `search`, `docs`, `plan`, `exec`, `verify`, `debt`, `config`, `relay`, `consolidate`, `interactive`, `daemon`, `mcp:server`.
+**Advanced commands** (visible with `--all`): `init`, `analyze`, `graph`, `search`, `docs`, `plan`, `exec`, `verify`, `debt`, `secure`, `comply`, `config`, `relay`, `consolidate`, `interactive`, `daemon`, `dashboard`, `mcp:server`.
 
 ## Configuration
 
-After setup, edit `.cortex/config.yaml` if you want to tune things:
+Edit `.cortex/config.yaml` or use the CLI:
 
 ```yaml
 pruning:
@@ -176,7 +168,6 @@ pruning:
 
 decay:
   defaultTTL: 24        # Hours before context starts fading
-  decayThreshold: 0.95
 
 realtime:
   tokenBudget: 40000
@@ -184,8 +175,6 @@ realtime:
 
 agent: claude-code  # auto-detected during setup
 ```
-
-Or use the CLI:
 
 ```bash
 cortex config get pruning.threshold
@@ -205,30 +194,36 @@ Exposes four tools: `cortex_optimize`, `cortex_stats`, `cortex_search`, `cortex_
 ## Programmatic API
 
 ```typescript
-import { createSparsePruner, estimateTokens } from '@sparn/cortex';
+import { createSparsePruner, estimateTokens } from '@sparn/cortex-developer-edition';
 
 const pruner = createSparsePruner({ threshold: 5 });
 const result = pruner.prune(largeContext, 5);
-console.log(`${estimateTokens(largeContext)} -> ${estimateTokens(result.prunedContext)} tokens`);
 ```
 
-Full API: `createDependencyGraph`, `createSearchEngine`, `createWorkflowPlanner`, `createDocsGenerator`, `createDebtTracker`, `createAnalysisHistory`, `createCortexIgnore`, `buildAnalysisContext`, `buildChangedFilesContext`, `buildSingleFileContext`, `createKVMemory`, `createBudgetPrunerFromConfig`, `createIncrementalOptimizer`, and more.
+Full API includes: `createDependencyGraph`, `createSearchEngine`, `createWorkflowPlanner`, `createDocsGenerator`, `createDebtTracker`, `createAnalysisHistory`, `createCortexIgnore`, `createKVMemory`, `createBudgetPrunerFromConfig`, `createIncrementalOptimizer`, `createCortexMcpServer`, `runSecureAudit`, `runComplyAudit`, and more.
 
-## How It Works
+## `.cortexignore`
 
-Cortex uses a multi-stage pipeline:
+Exclude files or suppress specific rules:
 
-1. **Relevance filtering** — Only the top 2-5% of context carries real signal
-2. **Time decay** — Older context fades unless reinforced by reuse
-3. **Entry classification** — Active, ready, or silent based on score
-4. **Critical event detection** — Errors and stack traces get permanently flagged (BTSP)
-5. **Consolidation** — Periodic merging of duplicates and cleanup of stale data
+```
+# .cortexignore
+src/generated/**
+src/legacy/** QUAL-001,QUAL-003
+```
+
+## See Also
+
+| Package | What it does |
+|---|---|
+| [`@sparn/cortex`](https://github.com/sparn-labs/cortex) | Simple code scanning CLI — quality, security, and compliance checks with zero setup |
+| [`@sparn/cortex-lite`](https://github.com/sparn-labs/cortex-lite) | Lightweight context compression with a native Rust engine — no CLI, just hooks and a programmatic API |
 
 ## Development
 
 ```bash
-git clone https://github.com/sparn-labs/cortex.git
-cd cortex
+git clone https://github.com/sparn-labs/cortex-developer-edition.git
+cd cortex-developer-edition
 npm install
 npm run build
 npm test
