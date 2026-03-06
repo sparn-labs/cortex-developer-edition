@@ -1081,7 +1081,9 @@ program
             console.log(dim('  No fixable findings found.\n'));
           } else {
             console.log(
-              bold(`  Audit: ${neuralCyan(String(fixableActions.length))} fixable finding(s) found\n`),
+              bold(
+                `  Audit: ${neuralCyan(String(fixableActions.length))} fixable finding(s) found\n`,
+              ),
             );
 
             const readline = await import('node:readline');
@@ -1117,9 +1119,7 @@ program
             } else {
               // Individual prompts
               for (const action of fixableActions) {
-                console.log(
-                  `\n  ${bold(action.ruleId)} ${action.description}`,
-                );
+                console.log(`\n  ${bold(action.ruleId)} ${action.description}`);
                 console.log(`  File: ${dim(action.file)}`);
                 for (const line of action.preview) {
                   console.log(`    - ${line}`);
