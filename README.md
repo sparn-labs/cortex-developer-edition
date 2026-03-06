@@ -216,7 +216,7 @@ src/legacy/** QUAL-001,QUAL-003
 
 | Package | What it does |
 |---|---|
-| [`@sparn/cortex`](https://github.com/sparn-labs/cortex) | Simple code scanning CLI — quality, security, and compliance checks with zero setup |
+| [`@sparn/cortex`](https://github.com/sparn-labs/cortex) | Context optimization & code analysis — same engine without tech debt tracker and full analysis suite |
 | [`@sparn/cortex-lite`](https://github.com/sparn-labs/cortex-lite) | Lightweight context compression with a native Rust engine — no CLI, just hooks and a programmatic API |
 
 ## Development
